@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: "https://github.com/MedveDevVV/backend.git#v2.1"
+    image: backend:v2.1
+    volumes:
+      - backend-data:/app/data
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: "https://github.com/MedveDevVV/frontend.git#v2.1"
+    image: frontend:v2.1
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+
+volumes:
+  backend-data:
