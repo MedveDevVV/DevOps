@@ -1,0 +1,12 @@
+---
+- name: Clone DevOps repository
+  ansible.builtin.git:
+    repo: 'https://github.com/MedveDevVV/DevOps.git'
+    dest: /home/debianvirt/DevOps
+    version: main
+    force: yes
+
+- name: Run docker compose up
+  ansible.builtin.command:
+    cmd: docker compose up -d --build
+    chdir: /home/debianvirt/DevOps

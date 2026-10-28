@@ -1,0 +1,12 @@
+---
+- name: Install Docker
+  ansible.builtin.import_tasks: subtasks/docker.yml
+  tags: [install]
+  
+- name: Deploy microservices
+  ansible.builtin.import_tasks: subtasks/deploy.yml
+  tags: [deploy, up]
+  
+- name: Stop microservices
+  ansible.builtin.import_tasks: subtasks/stop.yml
+  tags: [stop, down]
